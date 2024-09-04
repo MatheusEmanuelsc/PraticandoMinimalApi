@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\tarefasapi\\endpoints\\tarefasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|solutionrelative:endpoints\\tarefasendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\tarefasapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\tarefasapi\\extensions\\servicecollectionsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|solutionrelative:extensions\\servicecollectionsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\tarefasapi\\data\\tarefacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|solutionrelative:data\\tarefacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\tarefasapi\\data\\tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|solutionrelative:data\\tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\tarefasapi\\tarefasapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{6B83DCCD-C0C5-488E-B10B-6AB8D6E7561D}|TarefasApi.csproj|solutionrelative:tarefasapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -18,12 +38,81 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TarefasApi",
+              "Title": "TarefasEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\EndPoints\\TarefasEndpoints.cs",
+              "RelativeDocumentMoniker": "EndPoints\\TarefasEndpoints.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\EndPoints\\TarefasEndpoints.cs",
+              "RelativeToolTip": "EndPoints\\TarefasEndpoints.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAgwD0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T10:28:59.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T10:16:37.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ServiceCollectionsExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Extensions\\ServiceCollectionsExtensions.cs",
+              "RelativeDocumentMoniker": "Extensions\\ServiceCollectionsExtensions.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Extensions\\ServiceCollectionsExtensions.cs",
+              "RelativeToolTip": "Extensions\\ServiceCollectionsExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T10:05:27.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TarefaContext.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Data\\TarefaContext.cs",
+              "RelativeDocumentMoniker": "Data\\TarefaContext.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Data\\TarefaContext.cs",
+              "RelativeToolTip": "Data\\TarefaContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T10:02:23.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Tarefa.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Data\\Tarefa.cs",
+              "RelativeDocumentMoniker": "Data\\Tarefa.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\Data\\Tarefa.cs",
+              "RelativeToolTip": "Data\\Tarefa.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T09:56:52.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TarefasApi.csproj",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\TarefasApi.csproj",
               "RelativeDocumentMoniker": "TarefasApi.csproj",
               "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\TarefasApi.csproj",
@@ -34,12 +123,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\TarefasApi\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -47,8 +132,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-03T18:30:18.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-03T18:30:18.332Z"
             }
           ]
         }
