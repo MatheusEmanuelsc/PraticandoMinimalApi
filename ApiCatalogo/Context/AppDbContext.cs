@@ -9,10 +9,10 @@ namespace ApiCatalogo.Context
         {
         }
 
-        DbSet<Categoria>?Categorias { get; set; }
-        DbSet<Produto>? Produtos { get; set; }
+        public DbSet<Categoria>?Categorias { get; set; }
+        public DbSet<Produto>? Produtos { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder mb)
         {
             //categoria
             mb.Entity<Categoria>().HasKey(c => c.CategoriaId);
