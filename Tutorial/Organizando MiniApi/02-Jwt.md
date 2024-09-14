@@ -1,186 +1,173 @@
-### Resumo: Autenticação JWT com Identity - Parte 2
 
-Neste tutorial, seguiremos as bases estabelecidas anteriormente, onde implementamos a autenticação JWT. Agora, vamos adicionar **ASP.NET Core Identity** para gerenciar a autenticação de usuários de maneira mais completa. ASP.NET Core Identity oferece uma estrutura poderosa para autenticação, gerenciamento de usuários e funções.
 
-#### **Etapa 1: Geração de Token com Identity**
+# Parte 2: Implementando JWT com Identity e Configuração de Swagger
 
-##### 1.1 Criar a classe `UserModel`
-Vamos usar uma classe simples para representar as credenciais de login do usuário. Ela será usada no processo de autenticação.
+## Índice
+1. [Introdução](#introdução)
+2. [Configuração do ASP.NET Core Identity](#configuração-do-aspnet-core-identity)
+3. [Configuração do JWT](#configuração-do-jwt)
+4. [Configurando Swagger com Suporte a JWT](#configurando-swagger-com-suporte-a-jwt)
+5. [Conclusão](#conclusão)
 
-```csharp
-namespace ApiCatalogo.Models
-{
-    public class UserModel
-    {
-        public string? UserName { get; set; }
-        public string? Password { get; set; }
-    }
-}
-```
+---
 
-##### 1.2 Definir Seção JWT no `appsettings.json`
-Aqui vamos definir a chave secreta usada para gerar o token JWT. Essa chave deve ser forte e mantida em segredo.
+## 1. Introdução
 
-```json
-"Jwt": {
-    "Key": "chave secreta aqui",
-    "Issuer": "issuer aqui",
-    "Audience": "audience aqui"
-}
-```
+Nesta parte do resumo, vamos implementar o **JWT** (JSON Web Token) em uma **Web API** usando **ASP.NET Core Identity** e configurar o **Swagger** para permitir a autenticação de endpoints protegidos com tokens JWT. Isso permitirá documentar e testar facilmente os endpoints da API que exigem autenticação.
 
-##### 1.3 Adicionar o pacote `Microsoft.AspNetCore.Authentication.JwtBearer`
-Para trabalhar com JWT, instale o pacote de autenticação JWT:
+## 2. Configuração do ASP.NET Core Identity
 
-```bash
-dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
-```
+Primeiro, vamos configurar o **ASP.NET Core Identity**, que é um sistema completo de gerenciamento de usuários. Ele facilita a criação, autenticação e gerenciamento de usuários, senhas, roles e claims. A configuração do Identity será usada para gerar e validar tokens JWT.
 
-##### 1.4 Criar Serviço para Geração de Token
-Este serviço usará a chave JWT definida no `appsettings.json` para gerar o token JWT com base nas credenciais do usuário.
+### Passos:
 
-```csharp
-using ApiCatalogo.Models;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+1. **Instalar os Pacotes Necessários**
+   Se ainda não tiver instalado, adicione os pacotes necessários:
+   ```bash
+   dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+   dotnet add package Microsoft.EntityFrameworkCore
+   ```
 
-namespace ApiCatalogo.Services
-{
-    public class TokenService : ITokenService
-    {
-        public string GerarToken(string key, string issuer, string audience, UserModel user)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.NameIdentifier,Guid.NewGuid().ToString())
-            };
+2. **Adicionar o Identity no `Program.cs`**
+   No arquivo `Program.cs`, configure o Identity para trabalhar com o **Entity Framework** e o banco de dados:
 
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+   ```csharp
+   builder.Services.AddDbContext<ApplicationDbContext>(options =>
+       options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+           new MySqlServerVersion(new Version(8, 0, 28))));
 
-            var token = new JwtSecurityToken(issuer: issuer,
-                                             audience: audience,
-                                             claims: claims,
-                                             expires: DateTime.Now.AddMinutes(10),
-                                             signingCredentials: credentials);
+   builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+       .AddEntityFrameworkStores<ApplicationDbContext>()
+       .AddDefaultTokenProviders();
+   ```
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var stringToken = tokenHandler.WriteToken(token);
-            return stringToken;
-        }
-    }
-}
-```
+   - **AddIdentity**: Adiciona o Identity ao pipeline, configurando-o para usar o Entity Framework e fornecer os provedores padrão de autenticação.
 
-#### **Etapa 2: Integração com ASP.NET Core Identity**
+---
 
-Agora, vamos adicionar suporte ao **Identity** para gerenciar usuários e autenticação.
+## 3. Configuração do JWT
 
-##### 2.1 Adicionar Pacotes Necessários
-Instale os pacotes necessários para Identity e Entity Framework Core:
+Agora, vamos configurar o JWT para autenticar os usuários em nossa API.
 
-```bash
-dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-```
+1. **Configurar JWT no `Program.cs`**:
+   Adicione a configuração para gerar e validar tokens JWT:
 
-##### 2.2 Configurar Identity no `Program.cs`
-Agora, configuramos o Identity no pipeline de serviços da aplicação e adicionamos a autenticação JWT.
+   ```csharp
+   using Microsoft.AspNetCore.Authentication.JwtBearer;
+   using Microsoft.IdentityModel.Tokens;
+   using System.Text;
 
-```csharp
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+   var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtConfig:Secret"]);
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+   builder.Services.AddAuthentication(options =>
+   {
+       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+   })
+   .AddJwtBearer(options =>
+   {
+       options.TokenValidationParameters = new TokenValidationParameters
+       {
+           ValidateIssuer = true,
+           ValidateAudience = true,
+           ValidateLifetime = true,
+           ValidateIssuerSigningKey = true,
+           ValidIssuer = builder.Configuration["JwtConfig:Issuer"],
+           ValidAudience = builder.Configuration["JwtConfig:Audience"],
+           IssuerSigningKey = new SymmetricSecurityKey(key)
+       };
+   });
+   ```
 
-builder.Services.AddSingleton<ITokenService, TokenService>();
+   - **AddAuthentication**: Configura o esquema de autenticação padrão como `JwtBearer`.
+   - **TokenValidationParameters**: Define os parâmetros de validação do token, incluindo a chave de assinatura e as verificações de emissor e público.
 
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
-});
+2. **Configurar JWT no `appsettings.json`**:
+   No arquivo `appsettings.json`, adicione as configurações para o JWT:
+   ```json
+   "JwtConfig": {
+     "Secret": "SuaChaveSuperSecreta",
+     "Issuer": "sua-aplicacao",
+     "Audience": "seus-usuarios"
+   }
+   ```
 
-builder.Services.AddAuthorization();
-```
+---
 
-##### 2.3 Configurar `AppDbContext`
-No `AppDbContext`, devemos adicionar o suporte ao Identity.
+## 4. Configurando Swagger com Suporte a JWT
 
-```csharp
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+Agora, vamos configurar o **Swagger** para documentar nossa API e incluir o suporte à autenticação JWT nos testes dos endpoints.
 
-namespace ApiCatalogo.Context
-{
-    public class AppDbContext : IdentityDbContext<IdentityUser>
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        
-        public DbSet<Categoria> Categorias { get; set; }
-    }
-}
-```
+### Passos:
 
-#### **Etapa 3: Criação do Endpoint para Login**
+1. **Instalar o Swagger**:
+   Se ainda não estiver instalado, adicione o pacote Swagger:
+   ```bash
+   dotnet add package Swashbuckle.AspNetCore
+   ```
 
-Agora vamos criar o endpoint para login. Ele validará o usuário usando o **Identity**, e se as credenciais estiverem corretas, será gerado um token JWT.
+2. **Configurar Swagger no `Program.cs`**:
+   Adicione as seguintes configurações no `Program.cs` para configurar o Swagger com suporte à autenticação JWT:
 
-```csharp
-app.MapPost("/login", [AllowAnonymous] async (UserModel userModel, ITokenService tokenService, UserManager<IdentityUser> userManager) =>
-{
-    if (userModel == null)
-    {
-        return Results.BadRequest("Login inválido");
-    }
+   ```csharp
+   builder.Services.AddSwaggerGen(c =>
+   {
+       c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiCatalogo", Version = "v1" });
 
-    var user = await userManager.FindByNameAsync(userModel.UserName);
-    if (user != null && await userManager.CheckPasswordAsync(user, userModel.Password))
-    {
-        var tokenString = tokenService.GerarToken(app.Configuration["Jwt:Key"],
-            app.Configuration["Jwt:Issuer"],
-            app.Configuration["Jwt:Audience"],
-            userModel);
-        return Results.Ok(new { token = tokenString });
-    }
-    else
-    {
-        return Results.BadRequest("Login inválido");
-    }
-}).Produces(StatusCodes.Status400BadRequest)
-  .Produces(StatusCodes.Status200OK)
-  .WithName("Login")
-  .WithTags("Autenticacao");
-```
+       c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+       {
+           Name = "Authorization",
+           Type = SecuritySchemeType.ApiKey,
+           Scheme = "Bearer",
+           BearerFormat = "JWT",
+           In = ParameterLocation.Header,
+           Description = @"JWT Authorization header using the Bearer scheme.
+           Enter 'Bearer' [space] and then your token. Example: 'Bearer 12345abcdef'",
+       });
 
-#### **Etapa 4: Proteger Endpoints**
+       c.AddSecurityRequirement(new OpenApiSecurityRequirement
+       {
+           {
+               new OpenApiSecurityScheme
+               {
+                   Reference = new OpenApiReference
+                   {
+                       Type = ReferenceType.SecurityScheme,
+                       Id = "Bearer"
+                   }
+               },
+               new string[] { }
+           }
+       });
+   });
 
-Agora que o JWT e o Identity estão configurados, podemos proteger nossos endpoints usando o método `RequireAuthorization()`.
+   builder.Services.AddEndpointsApiExplorer();
+   ```
 
-```csharp
-app.MapGet("/categorias", async (AppDbContext db) => 
-    await db.Categorias.ToListAsync())
-    .RequireAuthorization();
-```
+   - **AddSecurityDefinition**: Define como o Swagger deve lidar com a autenticação JWT, permitindo que você insira o token diretamente no Swagger UI.
+   - **AddSecurityRequirement**: Exige que todos os endpoints protegidos pela autenticação JWT tenham o token no cabeçalho `Authorization`.
 
-### Conclusão
-Com essas etapas, você adicionou autenticação JWT e integração com **ASP.NET Core Identity** em sua aplicação. Agora, o sistema pode gerenciar usuários de maneira mais robusta, proteger endpoints e gerar tokens JWT para autenticação.
+3. **Ativar o Middleware do Swagger**:
+   Adicione os middlewares para o Swagger no pipeline de requisições:
+
+   ```csharp
+   app.UseSwagger();
+   app.UseSwaggerUI(c =>
+   {
+       c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiCatalogo v1");
+   });
+   ```
+
+   Isso disponibiliza a interface do Swagger na URL `/swagger/index.html`.
+
+---
+
+## 5. Conclusão
+
+Nesta parte, você aprendeu a configurar o **JWT** e o **ASP.NET Core Identity** para autenticar usuários em uma Web API. Também configuramos o **Swagger** para documentar e testar os endpoints protegidos por JWT. Agora, você pode autenticar e autorizar usuários de forma segura e visualizar/testar seus endpoints protegidos diretamente no Swagger UI.
+
+Com essas configurações, você possui uma API segura e documentada, pronta para ser expandida com mais funcionalidades, como autorização baseada em roles e claims.
+
+---
+
+Essa versão inclui todas as etapas que você mencionou e configura o Swagger adequadamente para o uso com JWT, garantindo que a API esteja bem documentada e que os endpoints protegidos possam ser testados de forma eficiente.
