@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E114D9E3-E84B-47DE-AF24-B66C4F8435B1}|ApiCatalogo.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\apicatalogo\\appservicesextensions\\servicecollectionsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E114D9E3-E84B-47DE-AF24-B66C4F8435B1}|ApiCatalogo.csproj|solutionrelative:appservicesextensions\\servicecollectionsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E114D9E3-E84B-47DE-AF24-B66C4F8435B1}|ApiCatalogo.csproj|c:\\users\\vboxuser\\documents\\praticandominimalapi\\apicatalogo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E114D9E3-E84B-47DE-AF24-B66C4F8435B1}|ApiCatalogo.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,19 +43,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ServiceCollectionsExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\AppServicesExtensions\\ServiceCollectionsExtensions.cs",
+              "RelativeDocumentMoniker": "AppServicesExtensions\\ServiceCollectionsExtensions.cs",
+              "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\AppServicesExtensions\\ServiceCollectionsExtensions.cs",
+              "RelativeToolTip": "AppServicesExtensions\\ServiceCollectionsExtensions.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAQwF0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-14T16:31:16.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAAAFkAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-14T13:27:52.44Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TokenService.cs",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\Services\\TokenService.cs",
               "RelativeDocumentMoniker": "Services\\TokenService.cs",
@@ -59,12 +76,11 @@
               "RelativeToolTip": "Services\\TokenService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-14T13:17:17.011Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-14T13:17:17.011Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ITokenService.cs",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\Services\\ITokenService.cs",
               "RelativeDocumentMoniker": "Services\\ITokenService.cs",
@@ -72,12 +88,11 @@
               "RelativeToolTip": "Services\\ITokenService.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-14T13:16:00.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-14T13:16:00.848Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -85,12 +100,11 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-14T13:13:02.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-14T13:13:02.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UserModel.cs",
               "DocumentMoniker": "C:\\Users\\vboxuser\\Documents\\PraticandoMinimalApi\\ApiCatalogo\\Models\\UserModel.cs",
               "RelativeDocumentMoniker": "Models\\UserModel.cs",
@@ -98,8 +112,7 @@
               "RelativeToolTip": "Models\\UserModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-14T13:04:27.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-14T13:04:27.514Z"
             }
           ]
         }
